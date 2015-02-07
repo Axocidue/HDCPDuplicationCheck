@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HPDDPRODModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DELIVERY">
+          <Key>
+            <PropertyRef Name="DELIVERYID" />
+          </Key>
+          <Property Name="DELIVERYID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DELIVERYNUMBER" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="SHIPFROM" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPDATE" Type="date" />
+          <Property Name="DELIVERYDATE" Type="date" />
+          <Property Name="CUSTORDER" Type="varchar2" MaxLength="30" />
+          <Property Name="SHIPFROMLOGID" Type="number" Precision="38" Scale="0" />
+          <Property Name="SHIPTOLOGID" Type="number" Precision="38" Scale="0" />
+          <Property Name="CREATEDDATE" Type="date" Nullable="false" />
+          <Property Name="UPDATEDDATE" Type="date" Nullable="false" />
+          <Property Name="DELIVERYSTATUS" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“HPDD_PROD.INCLUDE”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="INCLUDE">
+          <Key>
+            <PropertyRef Name="UNITID" />
+            <PropertyRef Name="INCNAMEID" />
+          </Key>
+          <Property Name="UNITID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="INCNAMEID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="INCNUMBER" Type="varchar2" MaxLength="30" />
+          <Property Name="UNITLOGID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="PRODINFO">
+          <Key>
+            <PropertyRef Name="PRODINFOID" />
+          </Key>
+          <Property Name="PRODINFOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DPYPRODNUM" Type="varchar2" MaxLength="30" />
+          <Property Name="DPYREVSTATE" Type="varchar2" MaxLength="10" />
+          <Property Name="KRCPRODNUM" Type="varchar2" MaxLength="30" />
+          <Property Name="KRCREVSTATE" Type="varchar2" MaxLength="10" />
+          <Property Name="APPSWPRODNUM" Type="varchar2" MaxLength="30" />
+          <Property Name="APPSWREVSTATE" Type="varchar2" MaxLength="10" />
+          <Property Name="DSFPRODNUM" Type="varchar2" MaxLength="30" />
+          <Property Name="DSFREVSTATE" Type="varchar2" MaxLength="10" />
+          <Property Name="KRYPRODNUM" Type="varchar2" MaxLength="30" />
+          <Property Name="KRYREVSTATE" Type="varchar2" MaxLength="10" />
+          <Property Name="ACCESSORY" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPSWVERNUM" Type="varchar2" MaxLength="22" />
+          <Property Name="DSFVERNUM" Type="varchar2" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UNIT">
+          <Key>
+            <PropertyRef Name="UNITID" />
+          </Key>
+          <Property Name="UNITID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MSN" Type="varchar2" MaxLength="20" />
+          <Property Name="SUPPLYDELIVERYID" Type="number" Precision="38" Scale="0" />
+          <Property Name="SUPPLYPACKAGEID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DELIVERYID" Type="number" Precision="38" Scale="0" />
+          <Property Name="PACKAGEID" Type="number" Precision="38" Scale="0" />
+          <Property Name="MANUFDATE" Type="date" />
+          <Property Name="PRODINFOID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPFROMLOGID" Type="number" Precision="38" Scale="0" />
+          <Property Name="SHIPTOLOGID" Type="number" Precision="38" Scale="0" />
+          <Property Name="UNITSTATUS" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UPDATEDDATE" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DELIVERYID_DELIVERY">
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="0..1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY">
+              <PropertyRef Name="DELIVERYID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="DELIVERYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_UNIT">
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIT">
+              <PropertyRef Name="UNITID" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="UNITID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUPPLYDELID_DELIVERY">
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="0..1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY">
+              <PropertyRef Name="DELIVERYID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="SUPPLYDELIVERYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNIT_PRODINFO">
+          <End Role="PRODINFO" Type="Self.PRODINFO" Multiplicity="1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODINFO">
+              <PropertyRef Name="PRODINFOID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="PRODINFOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HPDDPRODModelStoreContainer">
+          <EntitySet Name="DELIVERY" EntityType="Self.DELIVERY" Schema="HPDD_PROD" store:Type="Tables" />
+          <EntitySet Name="PRODINFO" EntityType="Self.PRODINFO" Schema="HPDD_PROD" store:Type="Tables" />
+          <EntitySet Name="UNIT" EntityType="Self.UNIT" Schema="HPDD_PROD" store:Type="Tables" />
+          <EntitySet Name="INCLUDE" EntityType="Self.INCLUDE" store:Type="Tables" store:Schema="HPDD_PROD">
+            <DefiningQuery>SELECT 
+"INCLUDE"."UNITID" AS "UNITID", 
+"INCLUDE"."INCNAMEID" AS "INCNAMEID", 
+"INCLUDE"."INCNUMBER" AS "INCNUMBER", 
+"INCLUDE"."UNITLOGID" AS "UNITLOGID"
+FROM "HPDD_PROD"."INCLUDE" "INCLUDE"</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DELIVERYID_DELIVERY" Association="Self.FK_DELIVERYID_DELIVERY">
+            <End Role="DELIVERY" EntitySet="DELIVERY" />
+            <End Role="UNIT" EntitySet="UNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_UNIT" Association="Self.FK_INCLUDE_UNIT">
+            <End Role="UNIT" EntitySet="UNIT" />
+            <End Role="INCLUDE" EntitySet="INCLUDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUPPLYDELID_DELIVERY" Association="Self.FK_SUPPLYDELID_DELIVERY">
+            <End Role="DELIVERY" EntitySet="DELIVERY" />
+            <End Role="UNIT" EntitySet="UNIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNIT_PRODINFO" Association="Self.FK_UNIT_PRODINFO">
+            <End Role="PRODINFO" EntitySet="PRODINFO" />
+            <End Role="UNIT" EntitySet="UNIT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HPDDPRODModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DELIVERY">
+          <Key>
+            <PropertyRef Name="DELIVERYID" />
+          </Key>
+          <Property Name="DELIVERYID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DELIVERYNUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SHIPFROM" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPDATE" Type="DateTime" />
+          <Property Name="DELIVERYDATE" Type="DateTime" />
+          <Property Name="CUSTORDER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SHIPFROMLOGID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SHIPTOLOGID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="CREATEDDATE" Type="DateTime" Nullable="false" />
+          <Property Name="UPDATEDDATE" Type="DateTime" Nullable="false" />
+          <Property Name="DELIVERYSTATUS" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="UNITs" Relationship="Self.FK_DELIVERYID_DELIVERY" FromRole="DELIVERY" ToRole="UNIT" />
+          <NavigationProperty Name="UNITs1" Relationship="Self.FK_SUPPLYDELID_DELIVERY" FromRole="DELIVERY" ToRole="UNIT" />
+        </EntityType>
+        <EntityType Name="PRODINFO">
+          <Key>
+            <PropertyRef Name="PRODINFOID" />
+          </Key>
+          <Property Name="PRODINFOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DPYPRODNUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DPYREVSTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KRCPRODNUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="KRCREVSTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="APPSWPRODNUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="APPSWREVSTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DSFPRODNUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DSFREVSTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="KRYPRODNUM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="KRYREVSTATE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ACCESSORY" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="APPSWVERNUM" Type="String" MaxLength="22" FixedLength="false" Unicode="false" />
+          <Property Name="DSFVERNUM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UNITs" Relationship="Self.FK_UNIT_PRODINFO" FromRole="PRODINFO" ToRole="UNIT" />
+        </EntityType>
+        <EntityType Name="UNIT">
+          <Key>
+            <PropertyRef Name="UNITID" />
+          </Key>
+          <Property Name="UNITID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="MSN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SUPPLYDELIVERYID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SUPPLYPACKAGEID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DELIVERYID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="PACKAGEID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MANUFDATE" Type="DateTime" />
+          <Property Name="PRODINFOID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SHIPFROMLOGID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="SHIPTOLOGID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="UNITSTATUS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UPDATEDDATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="DELIVERY" Relationship="Self.FK_DELIVERYID_DELIVERY" FromRole="UNIT" ToRole="DELIVERY" />
+          <NavigationProperty Name="DELIVERY1" Relationship="Self.FK_SUPPLYDELID_DELIVERY" FromRole="UNIT" ToRole="DELIVERY" />
+          <NavigationProperty Name="PRODINFO" Relationship="Self.FK_UNIT_PRODINFO" FromRole="UNIT" ToRole="PRODINFO" />
+          <NavigationProperty Name="INCLUDEs" Relationship="Self.FK_INCLUDE_UNIT" FromRole="UNIT" ToRole="INCLUDE" />
+        </EntityType>
+        <EntityType Name="INCLUDE">
+          <Key>
+            <PropertyRef Name="UNITID" />
+            <PropertyRef Name="INCNAMEID" />
+          </Key>
+          <Property Name="UNITID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="INCNAMEID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="INCNUMBER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UNITLOGID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="UNIT" Relationship="Self.FK_INCLUDE_UNIT" FromRole="INCLUDE" ToRole="UNIT" />
+        </EntityType>
+        <Association Name="FK_DELIVERYID_DELIVERY">
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="0..1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY">
+              <PropertyRef Name="DELIVERYID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="DELIVERYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUPPLYDELID_DELIVERY">
+          <End Role="DELIVERY" Type="Self.DELIVERY" Multiplicity="0..1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DELIVERY">
+              <PropertyRef Name="DELIVERYID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="SUPPLYDELIVERYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UNIT_PRODINFO">
+          <End Role="PRODINFO" Type="Self.PRODINFO" Multiplicity="1" />
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODINFO">
+              <PropertyRef Name="PRODINFOID" />
+            </Principal>
+            <Dependent Role="UNIT">
+              <PropertyRef Name="PRODINFOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_UNIT">
+          <End Role="UNIT" Type="Self.UNIT" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UNIT">
+              <PropertyRef Name="UNITID" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="UNITID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HPDDPRODEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DELIVERies" EntityType="Self.DELIVERY" />
+          <EntitySet Name="PRODINFOes" EntityType="Self.PRODINFO" />
+          <EntitySet Name="UNITs" EntityType="Self.UNIT" />
+          <EntitySet Name="INCLUDEs" EntityType="Self.INCLUDE" />
+          <AssociationSet Name="FK_DELIVERYID_DELIVERY" Association="Self.FK_DELIVERYID_DELIVERY">
+            <End Role="DELIVERY" EntitySet="DELIVERies" />
+            <End Role="UNIT" EntitySet="UNITs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUPPLYDELID_DELIVERY" Association="Self.FK_SUPPLYDELID_DELIVERY">
+            <End Role="DELIVERY" EntitySet="DELIVERies" />
+            <End Role="UNIT" EntitySet="UNITs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UNIT_PRODINFO" Association="Self.FK_UNIT_PRODINFO">
+            <End Role="PRODINFO" EntitySet="PRODINFOes" />
+            <End Role="UNIT" EntitySet="UNITs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_UNIT" Association="Self.FK_INCLUDE_UNIT">
+            <End Role="UNIT" EntitySet="UNITs" />
+            <End Role="INCLUDE" EntitySet="INCLUDEs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HPDDPRODModelStoreContainer" CdmEntityContainer="HPDDPRODEntities">
+          <EntitySetMapping Name="DELIVERies">
+            <EntityTypeMapping TypeName="HPDDPRODModel.DELIVERY">
+              <MappingFragment StoreEntitySet="DELIVERY">
+                <ScalarProperty Name="DELIVERYID" ColumnName="DELIVERYID" />
+                <ScalarProperty Name="DELIVERYNUMBER" ColumnName="DELIVERYNUMBER" />
+                <ScalarProperty Name="SHIPFROM" ColumnName="SHIPFROM" />
+                <ScalarProperty Name="SHIPTO" ColumnName="SHIPTO" />
+                <ScalarProperty Name="SHIPDATE" ColumnName="SHIPDATE" />
+                <ScalarProperty Name="DELIVERYDATE" ColumnName="DELIVERYDATE" />
+                <ScalarProperty Name="CUSTORDER" ColumnName="CUSTORDER" />
+                <ScalarProperty Name="SHIPFROMLOGID" ColumnName="SHIPFROMLOGID" />
+                <ScalarProperty Name="SHIPTOLOGID" ColumnName="SHIPTOLOGID" />
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+                <ScalarProperty Name="DELIVERYSTATUS" ColumnName="DELIVERYSTATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODINFOes">
+            <EntityTypeMapping TypeName="HPDDPRODModel.PRODINFO">
+              <MappingFragment StoreEntitySet="PRODINFO">
+                <ScalarProperty Name="PRODINFOID" ColumnName="PRODINFOID" />
+                <ScalarProperty Name="DPYPRODNUM" ColumnName="DPYPRODNUM" />
+                <ScalarProperty Name="DPYREVSTATE" ColumnName="DPYREVSTATE" />
+                <ScalarProperty Name="KRCPRODNUM" ColumnName="KRCPRODNUM" />
+                <ScalarProperty Name="KRCREVSTATE" ColumnName="KRCREVSTATE" />
+                <ScalarProperty Name="APPSWPRODNUM" ColumnName="APPSWPRODNUM" />
+                <ScalarProperty Name="APPSWREVSTATE" ColumnName="APPSWREVSTATE" />
+                <ScalarProperty Name="DSFPRODNUM" ColumnName="DSFPRODNUM" />
+                <ScalarProperty Name="DSFREVSTATE" ColumnName="DSFREVSTATE" />
+                <ScalarProperty Name="KRYPRODNUM" ColumnName="KRYPRODNUM" />
+                <ScalarProperty Name="KRYREVSTATE" ColumnName="KRYREVSTATE" />
+                <ScalarProperty Name="ACCESSORY" ColumnName="ACCESSORY" />
+                <ScalarProperty Name="APPSWVERNUM" ColumnName="APPSWVERNUM" />
+                <ScalarProperty Name="DSFVERNUM" ColumnName="DSFVERNUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UNITs">
+            <EntityTypeMapping TypeName="HPDDPRODModel.UNIT">
+              <MappingFragment StoreEntitySet="UNIT">
+                <ScalarProperty Name="UNITID" ColumnName="UNITID" />
+                <ScalarProperty Name="MSN" ColumnName="MSN" />
+                <ScalarProperty Name="SUPPLYDELIVERYID" ColumnName="SUPPLYDELIVERYID" />
+                <ScalarProperty Name="SUPPLYPACKAGEID" ColumnName="SUPPLYPACKAGEID" />
+                <ScalarProperty Name="DELIVERYID" ColumnName="DELIVERYID" />
+                <ScalarProperty Name="PACKAGEID" ColumnName="PACKAGEID" />
+                <ScalarProperty Name="MANUFDATE" ColumnName="MANUFDATE" />
+                <ScalarProperty Name="PRODINFOID" ColumnName="PRODINFOID" />
+                <ScalarProperty Name="SHIPFROMLOGID" ColumnName="SHIPFROMLOGID" />
+                <ScalarProperty Name="SHIPTOLOGID" ColumnName="SHIPTOLOGID" />
+                <ScalarProperty Name="UNITSTATUS" ColumnName="UNITSTATUS" />
+                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INCLUDEs">
+            <EntityTypeMapping TypeName="HPDDPRODModel.INCLUDE">
+              <MappingFragment StoreEntitySet="INCLUDE">
+                <ScalarProperty Name="UNITID" ColumnName="UNITID" />
+                <ScalarProperty Name="INCNAMEID" ColumnName="INCNAMEID" />
+                <ScalarProperty Name="INCNUMBER" ColumnName="INCNUMBER" />
+                <ScalarProperty Name="UNITLOGID" ColumnName="UNITLOGID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

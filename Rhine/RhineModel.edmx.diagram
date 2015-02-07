@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e600ebff16564b2cbc6512e3d1056f8e" Name="Diagram1">
+        <EntityTypeShape EntityType="HPDDPRODModel.DELIVERY" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HPDDPRODModel.PRODINFO" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HPDDPRODModel.UNIT" Width="1.5" PointX="3.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HPDDPRODModel.INCLUDE" Width="1.5" PointX="7.625" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="HPDDPRODModel.FK_DELIVERYID_DELIVERY" ManuallyRouted="false" />
+        <AssociationConnector Association="HPDDPRODModel.FK_SUPPLYDELID_DELIVERY" ManuallyRouted="false" />
+        <AssociationConnector Association="HPDDPRODModel.FK_UNIT_PRODINFO" ManuallyRouted="false" />
+        <AssociationConnector Association="HPDDPRODModel.FK_INCLUDE_UNIT" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

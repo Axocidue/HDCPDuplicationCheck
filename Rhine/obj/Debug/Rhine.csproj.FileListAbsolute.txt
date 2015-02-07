@@ -1,0 +1,9 @@
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\Rhine.exe.config
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\Rhine.exe
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\Rhine.pdb
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\EntityFramework.dll
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\EntityFramework.xml
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\obj\Debug\Rhine.csprojResolveAssemblyReference.cache
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\obj\Debug\Rhine.exe
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\Rhine\obj\Debug\Rhine.pdb

@@ -1,0 +1,9 @@
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\HDCPDuplicationSolution.exe.config
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\HDCPDuplicationSolution.XML
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\HDCPDuplicationSolution.exe
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\HDCPDuplicationSolution.pdb
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\FSharp.Core.dll
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\FSharp.Core.xml
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\bin\Debug\zh-Hans\FSharp.Core.resources.dll
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\obj\Debug\HDCPDuplicationSolution.exe
+C:\Lemon\Personal\Desktop\Sync\VSProjects\HDCPDuplicationSolution\HDCPDuplicationSolution\obj\Debug\HDCPDuplicationSolution.pdb

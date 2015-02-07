@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HPDDPRODModelStoreContainer" CdmEntityContainer="HPDDPRODEntities">
+    <EntitySetMapping Name="DELIVERies">
+      <EntityTypeMapping TypeName="HPDDPRODModel.DELIVERY">
+        <MappingFragment StoreEntitySet="DELIVERY">
+          <ScalarProperty Name="DELIVERYID" ColumnName="DELIVERYID" />
+          <ScalarProperty Name="DELIVERYNUMBER" ColumnName="DELIVERYNUMBER" />
+          <ScalarProperty Name="SHIPFROM" ColumnName="SHIPFROM" />
+          <ScalarProperty Name="SHIPTO" ColumnName="SHIPTO" />
+          <ScalarProperty Name="SHIPDATE" ColumnName="SHIPDATE" />
+          <ScalarProperty Name="DELIVERYDATE" ColumnName="DELIVERYDATE" />
+          <ScalarProperty Name="CUSTORDER" ColumnName="CUSTORDER" />
+          <ScalarProperty Name="SHIPFROMLOGID" ColumnName="SHIPFROMLOGID" />
+          <ScalarProperty Name="SHIPTOLOGID" ColumnName="SHIPTOLOGID" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+          <ScalarProperty Name="DELIVERYSTATUS" ColumnName="DELIVERYSTATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODINFOes">
+      <EntityTypeMapping TypeName="HPDDPRODModel.PRODINFO">
+        <MappingFragment StoreEntitySet="PRODINFO">
+          <ScalarProperty Name="PRODINFOID" ColumnName="PRODINFOID" />
+          <ScalarProperty Name="DPYPRODNUM" ColumnName="DPYPRODNUM" />
+          <ScalarProperty Name="DPYREVSTATE" ColumnName="DPYREVSTATE" />
+          <ScalarProperty Name="KRCPRODNUM" ColumnName="KRCPRODNUM" />
+          <ScalarProperty Name="KRCREVSTATE" ColumnName="KRCREVSTATE" />
+          <ScalarProperty Name="APPSWPRODNUM" ColumnName="APPSWPRODNUM" />
+          <ScalarProperty Name="APPSWREVSTATE" ColumnName="APPSWREVSTATE" />
+          <ScalarProperty Name="DSFPRODNUM" ColumnName="DSFPRODNUM" />
+          <ScalarProperty Name="DSFREVSTATE" ColumnName="DSFREVSTATE" />
+          <ScalarProperty Name="KRYPRODNUM" ColumnName="KRYPRODNUM" />
+          <ScalarProperty Name="KRYREVSTATE" ColumnName="KRYREVSTATE" />
+          <ScalarProperty Name="ACCESSORY" ColumnName="ACCESSORY" />
+          <ScalarProperty Name="APPSWVERNUM" ColumnName="APPSWVERNUM" />
+          <ScalarProperty Name="DSFVERNUM" ColumnName="DSFVERNUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UNITs">
+      <EntityTypeMapping TypeName="HPDDPRODModel.UNIT">
+        <MappingFragment StoreEntitySet="UNIT">
+          <ScalarProperty Name="UNITID" ColumnName="UNITID" />
+          <ScalarProperty Name="MSN" ColumnName="MSN" />
+          <ScalarProperty Name="SUPPLYDELIVERYID" ColumnName="SUPPLYDELIVERYID" />
+          <ScalarProperty Name="SUPPLYPACKAGEID" ColumnName="SUPPLYPACKAGEID" />
+          <ScalarProperty Name="DELIVERYID" ColumnName="DELIVERYID" />
+          <ScalarProperty Name="PACKAGEID" ColumnName="PACKAGEID" />
+          <ScalarProperty Name="MANUFDATE" ColumnName="MANUFDATE" />
+          <ScalarProperty Name="PRODINFOID" ColumnName="PRODINFOID" />
+          <ScalarProperty Name="SHIPFROMLOGID" ColumnName="SHIPFROMLOGID" />
+          <ScalarProperty Name="SHIPTOLOGID" ColumnName="SHIPTOLOGID" />
+          <ScalarProperty Name="UNITSTATUS" ColumnName="UNITSTATUS" />
+          <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="INCLUDEs">
+      <EntityTypeMapping TypeName="HPDDPRODModel.INCLUDE">
+        <MappingFragment StoreEntitySet="INCLUDE">
+          <ScalarProperty Name="UNITID" ColumnName="UNITID" />
+          <ScalarProperty Name="INCNAMEID" ColumnName="INCNAMEID" />
+          <ScalarProperty Name="INCNUMBER" ColumnName="INCNUMBER" />
+          <ScalarProperty Name="UNITLOGID" ColumnName="UNITLOGID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
